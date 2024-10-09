@@ -13,9 +13,14 @@ class SettingMenu extends Menu {
   }
 
   init() {
+    console.log(this);
     if (!this.contentEl_) {
       return;
     }
+
+    // this.mainMenuItems = this.children().slice(0);
+
+    // this.transform(this.mainMenuItems);
 
     this.addClass('vjs-setting-menu-ready');
   }
@@ -31,60 +36,55 @@ class SettingMenu extends Menu {
     return el;
   }
 
-  // update(children = []) {
-  //   const children_ = this.children().slice(0);
+  update(children = []) {
+    const children_ = this.children().slice(0);
 
-  //   children_.forEach(child => {
-  //     this.removeChild(child);
-  //   });
+    children_.forEach(child => {
+      this.removeChild(child);
+    });
 
-  //   children.forEach(child => {
-  //     this.addChild(child);
-  //   });
-  // }
+    children.forEach(child => {
+      this.addChild(child);
+    });
+  }
 
-  // resize({ width, height }) {
-  //   this.contentEl_.style.width = width + 'px';
-  //   this.contentEl_.style.height = height + 'px';
-  // }
+  resize({ width, height }) {
+    this.contentEl_.style.width = width + 'px';
+    this.contentEl_.style.height = height + 'px';
+  }
 
-  // getMenuDimension(items) {
-  //   const player = this.player_;
-  //   const tempMenu = new SettingMenuTemp(player);
+  transform(items) {
+    const dimensions = this.getMenuDimension(items);
+    this.update(items);
+    this.resize(dimensions);
+  }
 
-  //   tempMenu.update(items);
-  //   player.addChild(tempMenu);
+  getMenuDimension(items) {
+    const player = this.player_;
+    const tempMenu = new SettingMenuTemp(player);
 
-  //   const rect = tempMenu.contentEl_.getBoundingClientRect();
+    tempMenu.update(items);
+    player.addChild(tempMenu);
 
-  //   // remove subMenuItem form tempMenu first, otherwise they will also be disposed
-  //   tempMenu.update();
-  //   tempMenu.dispose();
+    const rect = tempMenu.contentEl_.getBoundingClientRect();
 
-  //   // remove tempMenu in `player.children`
-  //   player.removeChild(tempMenu);
+    // remove subMenuItem form tempMenu first, otherwise they will also be disposed
+    tempMenu.update();
+    tempMenu.dispose();
 
-  //   return rect;
-  // }
+    // remove tempMenu in `player.children`
+    player.removeChild(tempMenu);
 
-  // transform(items) {
-  //   const dimensions = this.getMenuDimension(items);
-  //   this.update(items);
-  //   this.resize(dimensions);
-  // }
+    return rect;
+  }
+}
 
-  // restore() {
-  //   this.transform(this.mainMenuItems);
-  // }
-
-  // removeStyle() {
-  //   this.contentEl_.removeAttribute('style');
-  // }
-
-  // hide() {
-  //   // Disable default hide function
-  //   // As the default hide function violate the calculation of menu dimension
-  // }
+class SettingMenuTemp extends SettingMenu {
+  constructor(player) {
+    super(player, {
+      name: 'SettingMenuTemp'
+    });
+  }
 }
 
 videojs.registerComponent('SettingMenu', SettingMenu);

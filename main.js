@@ -1,5 +1,4 @@
 import './style.css'
-import './src/index.scss'
 import javascriptLogo from './javascript.svg'
 // import viteLogo from '/vite.svg'
 import { MediaPlayer } from './src/index.js'

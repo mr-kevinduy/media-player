@@ -16,3 +16,39 @@ https://github.com/BrightcoveOS/videojs-captions-toggle/blob/master/lib/videojs-
 https://videojs.com/guides/components/
 https://videojs.com/blog/videojs-8-and-vhs-3/
 
+
+# Data Type
+
+
+<MenuButton>
+<Menu>
+  <MenuItem_1>
+    <MenuItem_11>
+      <MenuContent>
+        <MenuItem_111>
+        <MenuItem_112>
+        <MenuItem_113>
+    <MenuItem_12>
+    <MenuItem_13>
+    <MenuItem_14>
+  <MenuItem_2>
+  <MenuItem_3>
+
+<SettingMenu> extends <Menu>
+  <TextExampleMenuItem> extends <MenuItem>
+  <SelectableExampleMenuItem> extends <MenuItem>
+    <TextExampleMenuItemList> extends <MenuItem>
+  <SubtitleMenuItem> extends <MenuItem>
+  <PlaybackRateMenuItem> extends <MenuItem>
+  <QualityMenuItem> extends <MenuItem>
+
+SettingMenu::_children = [
+  TextExampleMenuItem,
+  SelectableExampleMenuItem,
+  SubtitleMenuItem,
+  PlaybackRateMenuItem,
+  QualityMenuItem,
+]
+SelectableExampleMenuItem::_children = [
+  TextExampleMenuItemList,
+]

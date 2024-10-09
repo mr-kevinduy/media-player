@@ -1,7 +1,11 @@
 import videojs from 'video.js';
 import './MediaPlayer.js';
 import './components/ControlBar';
+import './components/PanelMenu/PanelMenuItem';
+import './components/SettingMenu/PlaybackRate';
 import './components/SettingMenu/SettingMenuButton';
+
+import './index.scss';
 
 export function MediaPlayer(element, options) {
   options = Object.assign({}, {
@@ -9,10 +13,12 @@ export function MediaPlayer(element, options) {
     controls: true
   }, options) || {};
 
-  console.log(options);
+  // console.log(options);
 
   var src = 'src' in options ? options.src : '';
   var player = videojs(element, options);
+  player.fluid(true);
+  // player.aspectRatio('16:9'); // 16:9 | 4:3
   player.loadMedia({
     artist: 'Disney',
     album: 'Oceans',

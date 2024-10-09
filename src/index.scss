@@ -1,0 +1,31 @@
+.video-js {
+  > .vjs-menu {
+    position: absolute;
+    right: 12px;
+    bottom: calc(3em + 10px);
+    z-index: 70;
+    will-change: width, height;
+    border-radius: 12px;
+    overflow: hidden;
+    border-radius: 2px;
+    background: rgba(28, 28, 28, .9);
+    text-shadow: 0 0 2px rgba(0, 0, 0, .5);
+    -webkit-transition: opacity .1s cubic-bezier(0,0,.2,1);
+    transition: opacity .1s cubic-bezier(0,0,.2,1);
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .vjs-menu {
+    .vjs-menu-content {
+      padding: 0.3em 0;
+      margin: 0;
+      font-size: 0.875em;
+      color: #fff;
+      will-change: transform, width, height;
+      transition: 0.3s transform ease, 0.3s width ease, 0.3s height ease;
+      overflow: hidden;
+    }
+  }
+}
