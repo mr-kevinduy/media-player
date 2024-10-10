@@ -1,4 +1,5 @@
 import videojs from 'video.js';
+import PlaybackRate from './PlaybackRate';
 
 const Menu = videojs.getComponent('Menu');
 
@@ -13,25 +14,19 @@ class SettingMenu extends Menu {
   }
 
   init() {
-    console.log(this);
     if (!this.contentEl_) {
       return;
     }
 
-    // this.mainMenuItems = this.children().slice(0);
+    console.log(this.contentEl_);
 
-    // this.transform(this.mainMenuItems);
-
+    this.mainMenuItems = this.children().slice(0);
+    this.transform(this.mainMenuItems);
     this.addClass('vjs-setting-menu-ready');
   }
 
   createEl() {
     const el = super.createEl();
-    // const layer = new CloseSettingMenu(this.player_, {
-    //   menu: this
-    // });
-
-    // el.insertBefore(layer.el_, el.firstElementChild);
 
     return el;
   }
@@ -50,13 +45,17 @@ class SettingMenu extends Menu {
 
   resize({ width, height }) {
     this.contentEl_.style.width = width + 'px';
-    this.contentEl_.style.height = height + 'px';
+    // this.contentEl_.style.height = height + 'px';
   }
 
   transform(items) {
     const dimensions = this.getMenuDimension(items);
     this.update(items);
     this.resize(dimensions);
+  }
+
+  restore() {
+    this.transform(this.mainMenuItems);
   }
 
   getMenuDimension(items) {

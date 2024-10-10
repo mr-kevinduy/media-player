@@ -1,5 +1,12 @@
 .video-js {
+  font-size: 12px;
+
+  .vjs-spacer {
+      flex-grow: 1;
+  }
+
   > .vjs-menu {
+    min-width: 120px;
     position: absolute;
     right: 12px;
     bottom: calc(3em + 10px);
@@ -8,8 +15,12 @@
     border-radius: 12px;
     overflow: hidden;
     border-radius: 2px;
-    background: rgba(28, 28, 28, .9);
+    background: #2b333f;
+    background: rgba(43,51,63,.7);
     text-shadow: 0 0 2px rgba(0, 0, 0, .5);
+    visibility: hidden;
+    will-change: visibility;
+    border-radius: 3px;
     -webkit-transition: opacity .1s cubic-bezier(0,0,.2,1);
     transition: opacity .1s cubic-bezier(0,0,.2,1);
     -moz-user-select: none;
@@ -18,7 +29,35 @@
   }
 
   .vjs-menu {
+    li {
+      list-style: none;
+      margin: 0;
+      padding: 0.7em 1em;
+      text-align: left;
+      outline: none;
+      cursor: pointer;
+      white-space: nowrap;
+      text-transform: none;
+    }
+
+    .vjs-panel-menu-item {
+      display: flex;
+      align-items: center;
+      justify-content: unset;
+
+      &:after {
+        content: "";
+        width: 0.65em;
+        height: 0.65em;
+        display: inline-block;
+        border-right: 0.15em solid;
+        border-bottom: 0.15em solid;
+        transform: rotate(-45deg);
+      }
+    }
+
     .vjs-menu-content {
+      min-width: 160px;
       padding: 0.3em 0;
       margin: 0;
       font-size: 0.875em;
@@ -28,4 +67,16 @@
       overflow: hidden;
     }
   }
+}
+
+@media (min-width: 481px) {
+    .video-js {
+      .vjs-menu {
+        .vjs-panel-menu-item {
+          > .vjs-icon-placeholder {
+            display: none;
+          }
+        }
+      }
+    }
 }

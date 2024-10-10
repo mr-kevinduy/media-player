@@ -2,7 +2,6 @@ import videojs from 'video.js';
 import './MediaPlayer.js';
 import './components/ControlBar';
 import './components/PanelMenu/PanelMenuItem';
-import './components/SettingMenu/PlaybackRate';
 import './components/SettingMenu/SettingMenuButton';
 
 import './index.scss';

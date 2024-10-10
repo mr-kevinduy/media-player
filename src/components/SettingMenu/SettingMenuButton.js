@@ -1,6 +1,9 @@
 import videojs from 'video.js';
 import SettingMenu from './index.js';
 
+import './PlaybackRate';
+import './Subtitle';
+
 const MenuButton = videojs.getComponent('MenuButton');
 
 class SettingMenuButton extends MenuButton {
@@ -9,7 +12,6 @@ class SettingMenuButton extends MenuButton {
 
     // move menu to player
     player.addChild(this.menu);
-    player.SettingMenu = this.menu;
 
     // remove videojs parent child relationship between button and menu
     this.removeChild(this.menu);
@@ -26,7 +28,7 @@ class SettingMenuButton extends MenuButton {
   }
 
   buildWrapperCSSClass() {
-    return `vjs-setting-button ${super.buildWrapperCSSClass()}`;
+    return `vjs-setting-button vjs-setting-button-wrapper ${super.buildWrapperCSSClass()}`;
   }
 
   createMenu() {
@@ -36,6 +38,7 @@ class SettingMenuButton extends MenuButton {
 
     const entries = this.options_.entries || [];
     entries.forEach(componentName => {
+      // menu.addItem(componentName);
       const component = menu.addChild(componentName, {
         menu
       });
@@ -52,6 +55,7 @@ class SettingMenuButton extends MenuButton {
 
   pressButton() {
     super.pressButton();
+    this.menu.init();
   }
 
   unpressButton() {
@@ -59,26 +63,29 @@ class SettingMenuButton extends MenuButton {
     this.player_.removeClass('vjs-keep-control-showing');
   }
 
-  handleClick() {
-    this.player_.addClass('vjs-keep-control-showing');
+  // handleClick() {
+  //   this.player_.addClass('vjs-keep-control-showing');
 
-    if (this.buttonPressed_) {
-      this.unpressButton();
-    } else {
-      this.pressButton();
-    }
+  //   if (this.buttonPressed_) {
+  //     this.unpressButton();
+  //   } else {
+  //     this.pressButton();
+  //   }
 
-    this.off(document.body, 'click', this.hideMenu);
+  //   this.off(document.body, 'click', this.hideMenu);
 
-    setTimeout(() => {
-      this.one(document.body, 'click', this.hideMenu);
-    }, 0);
-  }
+  //   setTimeout(() => {
+  //     this.one(document.body, 'click', this.hideMenu);
+  //   }, 0);
+  // }
 }
 
 // SettingMenuButton.prototype.controlText_ = 'Settings';
 SettingMenuButton.prototype.options_ = {
-  entries: ['PlaybackRate']
+  entries: [
+    'PlaybackRate',
+    'Subtitle'
+  ]
 };
 
 videojs.registerComponent('SettingMenuButton', SettingMenuButton);
