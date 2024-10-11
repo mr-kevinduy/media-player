@@ -18,9 +18,8 @@ class SettingMenu extends Menu {
       return;
     }
 
-    console.log(this.contentEl_);
-
     this.mainMenuItems = this.children().slice(0);
+    console.log('init mainMenuItems: ', this.mainMenuItems);
     this.transform(this.mainMenuItems);
     this.addClass('vjs-setting-menu-ready');
   }
@@ -49,6 +48,7 @@ class SettingMenu extends Menu {
   }
 
   transform(items) {
+    console.log('SettingMenu Items:', items);
     const dimensions = this.getMenuDimension(items);
     this.update(items);
     this.resize(dimensions);

@@ -3,6 +3,7 @@ import SettingMenu from './index.js';
 
 import './PlaybackRate';
 import './Subtitle';
+// import './Subtitle/SubtitleMenuItem';
 
 const MenuButton = videojs.getComponent('MenuButton');
 

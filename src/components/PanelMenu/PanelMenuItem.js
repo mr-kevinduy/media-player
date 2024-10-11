@@ -1,6 +1,8 @@
 import videojs from 'video.js';
 import { parseEntries } from '../../helpers';
 
+import SubtitleMenuItem from '../SettingMenu/Subtitle/SubtitleMenuItem';
+
 const MenuItem = videojs.getComponent('MenuItem');
 
 class PanelMenuItem extends MenuItem {
@@ -19,9 +21,9 @@ class PanelMenuItem extends MenuItem {
 
     this.setEntries(this.options_.entries || []);
 
-    if (!this.entries.length) {
-      this.hide();
-    }
+    // if (!this.entries.length) {
+    //   this.hide();
+    // }
 
     this.menu = options.menu;
   }
@@ -67,11 +69,33 @@ class PanelMenuItem extends MenuItem {
 
     this.updateSelectedValue();
 
+    console.log('this entries', this.entries);
+
     this.subMenuItems = [
-      ...this.entries.map(({ label, value }, index) => {
+      ...this.entries.map(({ type, label, value }, index) => {
+        console.log("label", label);
+        console.log("value", value);
+        console.log("index", index);
+        if (type === 'SubtitleMenuItem') {
+          // var subtitles = [];
+          // var tracks = this.player_.textTracks();
+          // for (var i = 0; i < tracks.length; i++) {
+          //   if (tracks[i].kind === 'subtitles') {
+          //     subtitles.push(new SubtitleMenuItem(this.player_, {track: tracks[i]}));
+          //   }
+          // }
+
+          return new SubtitleMenuItem(this.player_, {label, track: value});
+          // console.log("label", label);
+          // console.log("value", value);
+          // console.log("index", index);
+        }
+        // const { label, value } = entry;
         return new MenuItem(this.player_, {});
       })
     ];
+
+    console.log('subMenuItems: ', this.subMenuItems);
   }
 }
 
