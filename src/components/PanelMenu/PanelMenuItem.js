@@ -10,7 +10,7 @@ class PanelMenuItem extends MenuItem {
     console.log('PanelMenuItem');
     super(
       player,
-      videojs.mergeOptions(
+      videojs.obj.merge(
         {
           selectable: false
         },

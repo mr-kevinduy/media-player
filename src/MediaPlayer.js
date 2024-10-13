@@ -3,9 +3,11 @@ import 'video.js/dist/video-js.css';
 
 const { IS_IPHONE, IOS_VERSION } = videojs.browser;
 
+videojs.log.history.enable();
+
 videojs.hook('setup', _player => {
   _player.playsinline(_player.options_.playsinline !== false);
-
+  // debugger;
   _player.addClass('video-js');
 
   if (IS_IPHONE) {

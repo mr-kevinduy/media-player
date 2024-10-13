@@ -1,8 +1,8 @@
 import videojs from 'video.js';
 import './MediaPlayer.js';
-import './components/ControlBar';
-import './components/PanelMenu/PanelMenuItem';
-import './components/SettingMenu/SettingMenuButton';
+// import './components/ControlBar';
+// import './components/PanelMenu/PanelMenuItem';
+// import './components/SettingMenu/SettingMenuButton';
 
 import './index.scss';
 
@@ -72,6 +72,7 @@ export function MediaPlayer(element, options) {
     // var remoteTracks = player.remoteTextTracks();
     Object.keys(translateLangs).forEach(function(key) {
         var blob = new Blob([convertArrayToVtt(data[key])], {type : 'text/vtt'});
+        // debugger;
         var trackEl = player.addRemoteTextTrack({
             src: URL.createObjectURL(blob),
             kind: 'subtitles',
