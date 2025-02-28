@@ -52,3 +52,38 @@ SettingMenu::_children = [
 SelectableExampleMenuItem::_children = [
   TextExampleMenuItemList,
 ]
+
+
+
+SubsCapsButton
+  extends TextTrackButton
+    extends TrackButton
+      extends MenuButton
+        extends Component
+
+SubsCapsButton
+  createItems (new CaptionSettingsMenuItem)
+    super.createItems
+TextTrackButton
+  createItems(items, new TextTrackMenuItem)
+TrackButton
+  Event::removetrack => update
+  Event::addtrack => update
+  Event::labelchange => update
+  Event::ready => update
+MenuButton
+  constructor
+    - update
+  update
+    - Create menu: createMenu
+      - new Menu().addItem(new Component)
+      loopItem: this.createItems()
+        - new Menu().addItem(loopItem)
+
+Component
+
+
+# Menu
+
+Button
+  createMenu => Menu => MenuItem

@@ -1,15 +1,15 @@
 import videojs from 'video.js';
 import './MediaPlayer.js';
-// import './components/ControlBar';
-// import './components/PanelMenu/PanelMenuItem';
 // import './components/SettingMenu/SettingMenuButton';
+// https://deploy-preview-8260--videojs-preview.netlify.app/sandbox/svg-icons.html
 
 import './index.scss';
 
 export function MediaPlayer(element, options) {
   options = Object.assign({}, {
     autoplay: true,
-    controls: true
+    controls: true,
+    experimentalSvgIcons: true
   }, options) || {};
 
   // console.log(options);
